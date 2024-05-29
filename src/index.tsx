@@ -1,14 +1,23 @@
 import React from "react";
-import ReactDOM from "react-dom";
+import { createRoot } from "react-dom/client";
 import { BrowserRouter } from "react-router-dom";
 import App from "./App";
-import "./index.css";
+import { CssBaseline } from "@mui/material";
 
-ReactDOM.render(
+const container = document.getElementById("root");
+if (!container) {
+  throw new Error("Failed to find the root element");
+}
+
+const root = createRoot(container);
+
+root.render(
   <React.StrictMode>
     <BrowserRouter>
-      <App />
+      <CssBaseline />
+      <div style={{ backgroundColor: "#e4f3f7", minHeight: "100vh" }}>
+        <App />
+      </div>
     </BrowserRouter>
-  </React.StrictMode>,
-  document.getElementById("root")
+  </React.StrictMode>
 );
