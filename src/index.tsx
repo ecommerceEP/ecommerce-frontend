@@ -1,8 +1,8 @@
 import React from "react";
 import { createRoot } from "react-dom/client";
-import { BrowserRouter } from "react-router-dom";
+import { CssBaseline, ThemeProvider, createTheme } from "@mui/material";
+import { BrowserRouter as Router } from "react-router-dom";
 import App from "./App";
-import { CssBaseline } from "@mui/material";
 
 const container = document.getElementById("root");
 if (!container) {
@@ -10,14 +10,37 @@ if (!container) {
 }
 
 const root = createRoot(container);
+export const theme = createTheme({
+  palette: {
+    primary: {
+      main: "#ffff",
+      light: "#3399ff",
+      dark: "#0056b3",
+      contrastText: "#fff",
+    },
+    background: {
+      default: "#f0f2f5",
+      paper: "#fff",
+    },
+    text: {
+      primary: "#000",
+      secondary: "#FFFF",
+    },
+  },
+  typography: {
+    h4: {
+      fontWeight: 600,
+    },
+  },
+});
 
 root.render(
   <React.StrictMode>
-    <BrowserRouter>
+    <ThemeProvider theme={theme}>
       <CssBaseline />
-      <div style={{ backgroundColor: "#e4f3f7", minHeight: "100vh" }}>
+      <Router>
         <App />
-      </div>
-    </BrowserRouter>
+      </Router>
+    </ThemeProvider>
   </React.StrictMode>
 );
